@@ -1,0 +1,118 @@
+package agendia.manejo_clientes.model.entity;
+
+import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
+import java.util.Objects;
+
+@Entity
+@Table(name = "clients")
+public class ClientEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    private Long idCard;
+
+    @Column(nullable = false)
+    private String fullname;
+
+    @Column(nullable = false)
+    private String email;
+
+    @Column(nullable = false)
+    private Long phone;
+
+    private LocalDateTime updateAt;
+    private LocalDateTime creationAt;
+
+    public ClientEntity() {
+    }
+
+    public ClientEntity(Long idCard, String fullname, String email, Long phone) {
+        this.idCard = idCard;
+        this.fullname = fullname;
+        this.email = email;
+        this.phone = phone;
+    }
+
+    @PreUpdate
+    private void update_up(){
+        updateAt = LocalDateTime.now();
+    }
+
+    @PrePersist
+    private void created_up(){
+        creationAt = LocalDateTime.now();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    public LocalDateTime getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(LocalDateTime updateAt) {
+        this.updateAt = updateAt;
+    }
+
+    public LocalDateTime getCreationAt() {
+        return creationAt;
+    }
+
+    public void setCreationAt(LocalDateTime creationAt) {
+        this.creationAt = creationAt;
+    }
+
+    public Long getIdCard() {
+        return idCard;
+    }
+
+    public void setIdCard(Long idCard) {
+        this.idCard = idCard;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ClientEntity that = (ClientEntity) o;
+        return Objects.equals(id, that.id) && Objects.equals(idCard, that.idCard) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, idCard, email, phone);
+    }
+}
