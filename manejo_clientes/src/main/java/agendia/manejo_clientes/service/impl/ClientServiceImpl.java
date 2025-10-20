@@ -19,6 +19,7 @@ public class ClientServiceImpl implements ClientService {
         this.clientRepository = clientRepository;
     }
 
+
     @Transactional(readOnly = true)
     @Override
     public boolean existsByIdCard(Long idCard) {
@@ -47,6 +48,30 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public List<ClientEntity> findAll() {
         return clientRepository.findAll();
+    }
+
+
+    @Override
+    public ClientEntity findById(Long id) {
+        return clientRepository.findById(id).get();
+    }
+
+
+    @Override
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
+    }
+
+    @Override
+    public ClientEntity update(ClientEntity clientEntity) {
+        ClientEntity clientEntityBDD = clientRepository.findById(clientEntity.getId()).get();
+
+        clientEntityBDD.setIdCard(clientEntity.getIdCard());
+        clientEntityBDD.setFullname(clientEntity.getFullname());
+        clientEntityBDD.setEmail(clientEntity.getEmail());
+        clientEntityBDD.setPhone(clientEntity.getPhone());
+
+        return clientRepository.save(clientEntityBDD);
     }
 
 
