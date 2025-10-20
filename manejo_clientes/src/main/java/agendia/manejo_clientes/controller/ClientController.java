@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/client")
 public class ClientController {
@@ -20,5 +22,10 @@ public class ClientController {
     @PostMapping("/save")
     public ResponseEntity<ClientEntity> save(@RequestBody @Valid ClientRequest clientRequest){
         return ResponseEntity.ok(clientService.save(clientRequest));
+    }
+
+    @GetMapping
+    public List<ClientEntity>  findAll(){
+      return clientService.findAll();
     }
 }
