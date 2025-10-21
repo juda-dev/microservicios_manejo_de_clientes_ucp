@@ -8,6 +8,8 @@ import agendia.manejo_clientes.service.ClientService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ClientServiceImpl implements ClientService {
 
@@ -16,6 +18,7 @@ public class ClientServiceImpl implements ClientService {
     public ClientServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
     }
+
 
     @Transactional(readOnly = true)
     @Override
@@ -41,4 +44,35 @@ public class ClientServiceImpl implements ClientService {
         ClientEntity clientEntity = ClientMapper.requestToEntity(clientRequest);
         return clientRepository.save(clientEntity);
     }
+
+    @Override
+    public List<ClientEntity> findAll() {
+        return clientRepository.findAll();
+    }
+
+
+    @Override
+    public ClientEntity findById(Long id) {
+        return clientRepository.findById(id).get();
+    }
+
+
+    @Override
+    public void deleteById(Long id) {
+        clientRepository.deleteById(id);
+    }
+
+    @Override
+    public ClientEntity update(ClientEntity clientEntity) {
+        ClientEntity clientEntityBDD = clientRepository.findById(clientEntity.getId()).get();
+
+        clientEntityBDD.setIdCard(clientEntity.getIdCard());
+        clientEntityBDD.setFullname(clientEntity.getFullname());
+        clientEntityBDD.setEmail(clientEntity.getEmail());
+        clientEntityBDD.setPhone(clientEntity.getPhone());
+
+        return clientRepository.save(clientEntityBDD);
+    }
+
+
 }
