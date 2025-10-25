@@ -1,6 +1,7 @@
 package agendia.manejo_clientes.controller;
 
 import agendia.manejo_clientes.model.dto.ClientRequest;
+import agendia.manejo_clientes.model.dto.ClientResponse;
 import agendia.manejo_clientes.model.entity.ClientEntity;
 import agendia.manejo_clientes.service.ClientService;
 import jakarta.validation.Valid;
@@ -27,27 +28,27 @@ public class ClientController {
 
     // http://localhost:8080/client
     @GetMapping
-    public List<ClientEntity>  findAll(){
+    public List<ClientResponse>  findAll(){
       return clientService.findAll();
     }
 
     // http://localhost:8080/client/1
-    @GetMapping("/{id}")
-    public ClientEntity findById(@PathVariable Long id){
-        return clientService.findById(id);
+    @GetMapping("/{idCard}")
+    public ClientResponse findByIdCard(@PathVariable Long idCard){
+        return clientService.findByIdCard(idCard);
     }
 
     // http://localhost:8080/client/1
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
-        clientService.deleteById(id);
+    @DeleteMapping("/{idCard}")
+    public void deleteByIdCard(@PathVariable Long idCard){
+        clientService.deleteByIdCard(idCard);
     }
 
     // http://localhost:8080/client
 
     @PutMapping
-    public ClientEntity update(@RequestBody ClientEntity clientEntity){
-        return clientService.update(clientEntity);
+    public ClientResponse update(@RequestBody ClientRequest clientRequest){
+        return clientService.update(clientRequest);
     }
 
 
