@@ -15,8 +15,6 @@ public interface ClientService {
 
     List<ClientResponse> findAll();
 
-    void deleteById(Long id);
-
     ClientResponse update(ClientRequest clientRequest);
 
     ClientResponse findByIdCard(Long idCard);

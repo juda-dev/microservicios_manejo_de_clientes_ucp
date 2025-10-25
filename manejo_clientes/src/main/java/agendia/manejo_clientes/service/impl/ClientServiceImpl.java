@@ -1,5 +1,6 @@
 package agendia.manejo_clientes.service.impl;
 
+import agendia.manejo_clientes.exceptions.ClientNotFoundException;
 import agendia.manejo_clientes.mapper.ClientMapper;
 import agendia.manejo_clientes.model.dto.ClientRequest;
 import agendia.manejo_clientes.model.dto.ClientResponse;
@@ -56,20 +57,15 @@ public class ClientServiceImpl implements ClientService {
     @Transactional(readOnly = true)
     @Override
     public ClientResponse findByIdCard(Long idCard) {
-        return ClientMapper.EntityToResponse(clientRepository.findByIdCard(idCard).orElseThrow());
-    }
-
-
-    @Transactional
-    @Override
-    public void deleteById(Long id) {
-        clientRepository.deleteById(id);
+        return ClientMapper.EntityToResponse(clientRepository.findByIdCard(idCard)
+                .orElseThrow(ClientNotFoundException::new));
     }
 
     @Transactional
     @Override
     public ClientResponse update(ClientRequest clientRequest) {
-        ClientEntity clientEntity = clientRepository.findByIdCard(clientRequest.idCard()).orElseThrow();
+        ClientEntity clientEntity = clientRepository.findByIdCard(clientRequest.idCard())
+                .orElseThrow(ClientNotFoundException::new);
 
         clientEntity.setFullname(clientRequest.fullname());
         clientEntity.setEmail(clientRequest.email());
@@ -81,6 +77,9 @@ public class ClientServiceImpl implements ClientService {
     @Transactional
     @Override
     public void deleteByIdCard(Long idCard) {
+        if (!clientRepository.existsByIdCard(idCard)){
+            throw new ClientNotFoundException();
+        }
         clientRepository.deleteByIdCard(idCard);
     }
 }
