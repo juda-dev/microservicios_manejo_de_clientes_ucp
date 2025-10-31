@@ -7,6 +7,9 @@ import agendia.manejo_clientes.model.dto.ClientResponse;
 import agendia.manejo_clientes.model.entity.ClientEntity;
 import agendia.manejo_clientes.repository.ClientRepository;
 import agendia.manejo_clientes.service.ClientService;
+import agendia.manejo_clientes.service.EmailService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +19,8 @@ import java.util.List;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
+    @Autowired
+    private EmailService emailService;
 
     public ClientServiceImpl(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
@@ -44,6 +49,13 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientEntity save(ClientRequest clientRequest) {
         ClientEntity clientEntity = ClientMapper.requestToEntity(clientRequest);
+
+        if(clientEntity.getEmail() != null && !clientEntity.getEmail().isEmpty()){
+            String subject = "Successful date";
+            String content = "Hello "+ clientEntity.getFullname()+" Your appointment was successfully scheduled";
+            emailService.sendEmail(clientEntity.getEmail(),subject,content);
+        }
+
         return clientRepository.save(clientEntity);
     }
 
