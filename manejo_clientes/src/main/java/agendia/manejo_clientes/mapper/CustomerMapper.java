@@ -17,6 +17,6 @@ public class CustomerMapper {
         return new CustomerResponse(customerEntity.getIdCard()
                 , customerEntity.getPhone()
                 , customerEntity.getEmail()
-                , customerEntity.getFullname());
+                , customerEntity.getFullName());
     }
 }

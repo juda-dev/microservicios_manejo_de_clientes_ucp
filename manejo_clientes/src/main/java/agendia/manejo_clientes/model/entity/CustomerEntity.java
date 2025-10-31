@@ -17,8 +17,8 @@ public class CustomerEntity {
     @Column(nullable = false)
     private Long idCard;
 
-    @Column(nullable = false)
-    private String fullname;
+    @Column(nullable = false, name = "full_name")
+    private String fullName;
 
     @Column(nullable = false)
     private String email;
@@ -26,15 +26,18 @@ public class CustomerEntity {
     @Column(nullable = false)
     private Long phone;
 
+    @Column(name = "update_at")
     private LocalDateTime updateAt;
+
+    @Column(name = "creation_at")
     private LocalDateTime creationAt;
 
     public CustomerEntity() {
     }
 
-    public CustomerEntity(Long idCard, String fullname, String email, Long phone) {
+    public CustomerEntity(Long idCard, String fullName, String email, Long phone) {
         this.idCard = idCard;
-        this.fullname = fullname;
+        this.fullName = fullName;
         this.email = email;
         this.phone = phone;
     }
@@ -57,12 +60,12 @@ public class CustomerEntity {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {

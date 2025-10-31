@@ -1,6 +1,9 @@
 package agendia.manejo_clientes.controller;
 
 import agendia.manejo_clientes.exceptions.CustomerNotFoundException;
+import agendia.manejo_clientes.exceptions.IncorrectVerificationCodeException;
+import agendia.manejo_clientes.exceptions.VerificationCodeExpiredException;
+import agendia.manejo_clientes.exceptions.VerificationCodeNotFoundException;
 import agendia.manejo_clientes.model.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,33 @@ import static agendia.manejo_clientes.utils.ErrorCatalog.*;
 
 @RestControllerAdvice
 public class GlobalControllerAdvice {
+
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    @ExceptionHandler(IncorrectVerificationCodeException.class)
+    public ErrorResponse handlerIncorrectVerificationCodeException(){
+        return new ErrorResponse(INCORRECT_VERIFICATION_CODE.getCode()
+                , HttpStatus.NOT_FOUND, INCORRECT_VERIFICATION_CODE.getMessage()
+                , null
+                , LocalDateTime.now());
+    }
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(VerificationCodeExpiredException.class)
+    public ErrorResponse handlerVerificationCodeExpiredException(){
+        return new ErrorResponse(VERIFICATION_CODE_EXPIRED.getCode()
+                , HttpStatus.NOT_FOUND, VERIFICATION_CODE_EXPIRED.getMessage()
+                , null
+                , LocalDateTime.now());
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(VerificationCodeNotFoundException.class)
+    public ErrorResponse handlerVerificationCodeNotFoundException(){
+        return new ErrorResponse(VERIFICATION_CODE_NOT_FOUND.getCode()
+                , HttpStatus.NOT_FOUND, VERIFICATION_CODE_NOT_FOUND.getMessage()
+                , null
+                , LocalDateTime.now());
+    }
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(CustomerNotFoundException.class)

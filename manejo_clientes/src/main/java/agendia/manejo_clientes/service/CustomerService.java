@@ -16,4 +16,6 @@ public interface CustomerService {
     void deleteByEmail(String email);
 
     CustomerResponse findByEmail(String email);
+
+    CustomerEntity findEntityByEmail(String email);
 }

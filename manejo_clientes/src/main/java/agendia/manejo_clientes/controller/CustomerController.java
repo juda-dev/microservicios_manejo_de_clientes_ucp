@@ -1,10 +1,9 @@
 package agendia.manejo_clientes.controller;
 
-import agendia.manejo_clientes.model.dto.CustomerRequest;
-import agendia.manejo_clientes.model.dto.CustomerResponse;
-import agendia.manejo_clientes.model.dto.EmailResponse;
+import agendia.manejo_clientes.model.dto.*;
 import agendia.manejo_clientes.service.CustomerService;
 import agendia.manejo_clientes.service.SendEmailService;
+import agendia.manejo_clientes.service.VerificationCodeService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +17,12 @@ public class CustomerController {
 
     private final CustomerService customerService;
     private final SendEmailService sendEmailService;
+    private final VerificationCodeService verificationCodeService;
 
-    public CustomerController(CustomerService customerService, SendEmailService sendEmailService) {
+    public CustomerController(CustomerService customerService, SendEmailService sendEmailService, VerificationCodeService verificationCodeService) {
         this.customerService = customerService;
         this.sendEmailService = sendEmailService;
+        this.verificationCodeService = verificationCodeService;
     }
 
     // http://localhost:8080/client/save
@@ -48,6 +49,12 @@ public class CustomerController {
     @DeleteMapping("/{email}")
     public void deleteByIdCard(@PathVariable String email){
         customerService.deleteByEmail(email);
+    }
+
+    // http://localhost:8080/client/verify-code
+    @PostMapping("/verify-code")
+    public ConfirmationResponse verificationCode(@RequestBody @Valid ConfirmationRequest request){
+        return verificationCodeService.codeValidation(request);
     }
 
 }

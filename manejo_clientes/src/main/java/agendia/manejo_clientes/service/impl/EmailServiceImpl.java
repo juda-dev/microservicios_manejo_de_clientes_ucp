@@ -1,5 +1,6 @@
 package agendia.manejo_clientes.service.impl;
 
+import agendia.manejo_clientes.model.dto.ConfirmationRequest;
 import agendia.manejo_clientes.model.dto.CustomerRequest;
 import agendia.manejo_clientes.service.EmailService;
 import agendia.manejo_clientes.service.VerificationCodeService;
@@ -54,5 +55,4 @@ public class EmailServiceImpl implements EmailService {
             return CompletableFuture.completedFuture(null);
         }
     }
-
 }

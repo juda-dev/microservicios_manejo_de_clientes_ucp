@@ -31,7 +31,7 @@ public class CustomerServiceImpl implements CustomerService {
             CustomerEntity customerEntity = customerRepository
                     .findByEmail(customerRequest.email()).get();
 
-                customerEntity.setFullname(customerRequest.fullname());
+                customerEntity.setFullName(customerRequest.fullname());
                 customerEntity.setPhone(customerRequest.phone());
                 customerEntity.setIdCard(customerRequest.idCard());
 
@@ -65,5 +65,11 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerResponse findByEmail(String email) {
         return CustomerMapper.EntityToResponse(customerRepository
                 .findByEmail(email).orElseThrow(CustomerNotFoundException::new));
+    }
+
+    @Transactional(readOnly = true)
+    @Override
+    public CustomerEntity findEntityByEmail(String email) {
+        return customerRepository.findByEmail(email).orElseThrow(CustomerNotFoundException::new);
     }
 }
