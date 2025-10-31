@@ -6,5 +6,5 @@ import java.util.concurrent.CompletableFuture;
 
 public interface EmailService {
 
-    CompletableFuture<Boolean> sendVerificationCode(CustomerRequest request);
+    CompletableFuture<Void> sendVerificationCode(CustomerRequest request);
 }

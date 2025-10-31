@@ -8,7 +8,6 @@ import agendia.manejo_clientes.service.SendEmailService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.CompletableFuture;
 
 @Service
 public class SendEmailServiceImpl implements SendEmailService {
@@ -24,8 +23,8 @@ public class SendEmailServiceImpl implements SendEmailService {
 
     @Override
     public EmailResponse sendVerificationEmail(CustomerRequest request) {
-        CompletableFuture<Void> upsertCustomer = customerService.upsert(request);
-        CompletableFuture<Boolean> sendVerificationCode = emailService.sendVerificationCode(request);
+        customerService.upsert(request);
+        emailService.sendVerificationCode(request);
         return new EmailResponse(request.email(), LocalDateTime.now());
     }
 }

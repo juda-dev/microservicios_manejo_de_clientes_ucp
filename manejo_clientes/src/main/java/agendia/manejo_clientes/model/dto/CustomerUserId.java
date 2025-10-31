@@ -4,8 +4,9 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
+import java.util.UUID;
 
 @Embeddable
-public record CustomerUserId( @Column(name = "customer_id", nullable = false) Long customerId
+public record CustomerUserId( @Column(name = "customer_id", nullable = false) UUID customerId
         , @Column(name = "user_id", nullable = false) Long userId) implements Serializable {
 }

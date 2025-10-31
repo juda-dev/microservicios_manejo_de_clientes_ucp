@@ -1,6 +1,6 @@
 package agendia.manejo_clientes.service.impl;
 
-import agendia.manejo_clientes.exceptions.ClientNotFoundException;
+import agendia.manejo_clientes.exceptions.CustomerNotFoundException;
 import agendia.manejo_clientes.mapper.CustomerMapper;
 import agendia.manejo_clientes.model.dto.CustomerRequest;
 import agendia.manejo_clientes.model.dto.CustomerResponse;
@@ -34,12 +34,12 @@ public class CustomerServiceImpl implements CustomerService {
             CustomerEntity updateCustomerEntity = CustomerMapper.requestToEntity(customerRequest);
                 updateCustomerEntity.setId(customerEntity.getId());
 
-            CustomerResponse customerResponse = CustomerMapper.EntityToResponse(customerRepository.save(updateCustomerEntity));
+            customerRepository.save(updateCustomerEntity);
 
             return CompletableFuture.completedFuture(null);
         }
         CustomerEntity customerEntity = CustomerMapper.requestToEntity(customerRequest);
-        CustomerResponse customerResponse = CustomerMapper.EntityToResponse(customerRepository.save(customerEntity));
+        customerRepository.save(customerEntity);
 
         return CompletableFuture.completedFuture(null);
     }
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void deleteByEmail(String email) {
         if (!customerRepository.existsByEmail(email)){
-            throw new ClientNotFoundException();
+            throw new CustomerNotFoundException();
         }
         customerRepository.deleteByEmail(email);
     }
@@ -63,6 +63,6 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerResponse findByEmail(String email) {
         return CustomerMapper.EntityToResponse(customerRepository
-                .findByEmail(email).orElseThrow(() ->  new ClientNotFoundException()));
+                .findByEmail(email).orElseThrow(CustomerNotFoundException::new));
     }
 }

@@ -2,8 +2,8 @@ package agendia.manejo_clientes.utils;
 
 public enum ErrorCatalog {
 
-    CLIENT_NOT_FOUND("ERR_CLIENT_001", "Client not found"),
-    INVALID_CLIENT("ERR_CLIENT_002", "Invalid client parameters"),
+    CUSTOMER_NOT_FOUND("ERR_CUSTOMER_001", "Customer not found"),
+    INVALID_CUSTOMER("ERR_CUSTOMER_002", "Invalid customer parameters"),
     GENERIC_ERROR("ERR_GEN_001", "An unexpected error");
 
     private final String code;

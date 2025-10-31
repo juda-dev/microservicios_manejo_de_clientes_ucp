@@ -33,7 +33,7 @@ public class EmailServiceImpl implements EmailService {
     @Async("taskExecutor")
     @Transactional
     @Override
-    public CompletableFuture<Boolean> sendVerificationCode(CustomerRequest request) {
+    public CompletableFuture<Void> sendVerificationCode(CustomerRequest request) {
         try{
             VerificationCodeEntity verificationCode = generateCodeFormatted(request.email());
 
@@ -51,14 +51,14 @@ public class EmailServiceImpl implements EmailService {
 
             mailSender.send(mimeMessage);
 
-            return CompletableFuture.completedFuture(true);
+            return CompletableFuture.completedFuture(null);
 
         } catch (Exception e) {
-            return CompletableFuture.completedFuture(false);
+            return CompletableFuture.completedFuture(null);
         }
     }
 
-    public VerificationCodeEntity generateCodeFormatted(String email) {
+    private VerificationCodeEntity generateCodeFormatted(String email) {
         Random random = new Random();
         int num = random.nextInt(1000000);
         String code = String.format("%06d", num);

@@ -1,6 +1,6 @@
 package agendia.manejo_clientes.controller;
 
-import agendia.manejo_clientes.exceptions.ClientNotFoundException;
+import agendia.manejo_clientes.exceptions.CustomerNotFoundException;
 import agendia.manejo_clientes.model.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -19,10 +19,10 @@ import static agendia.manejo_clientes.utils.ErrorCatalog.*;
 public class GlobalControllerAdvice {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ClientNotFoundException.class)
+    @ExceptionHandler(CustomerNotFoundException.class)
     public ErrorResponse handlerClientNotFoundException(){
-        return new ErrorResponse(CLIENT_NOT_FOUND.getCode()
-                , HttpStatus.NOT_FOUND, CLIENT_NOT_FOUND.getMessage()
+        return new ErrorResponse(CUSTOMER_NOT_FOUND.getCode()
+                , HttpStatus.NOT_FOUND, CUSTOMER_NOT_FOUND.getMessage()
                 , null
                 , LocalDateTime.now());
     }
@@ -33,9 +33,9 @@ public class GlobalControllerAdvice {
 
         BindingResult result = ex.getBindingResult();
 
-        return new ErrorResponse(INVALID_CLIENT.getCode()
+        return new ErrorResponse(INVALID_CUSTOMER.getCode()
                 , HttpStatus.BAD_REQUEST
-                , INVALID_CLIENT.getMessage()
+                , INVALID_CUSTOMER.getMessage()
                 , result.getFieldErrors()
                 .stream()
                 .map(FieldError::getDefaultMessage)
