@@ -25,33 +25,33 @@ public class CustomerController {
         this.verificationCodeService = verificationCodeService;
     }
 
-    // http://localhost:8080/client/save
+    // http://localhost:8080/customer/upsert
     @PutMapping("/upsert")
-    public ResponseEntity<EmailResponse> save(@RequestBody @Valid CustomerRequest customerRequest){
+    public ResponseEntity<EmailResponse> upsert(@RequestBody @Valid CustomerRequest customerRequest){
         return ResponseEntity.created(URI.create("/customer/" + customerRequest.email()))
                 .body(sendEmailService.sendVerificationEmail(customerRequest));
     }
 
-    // http://localhost:8080/client
+    // http://localhost:8080/customer
     @GetMapping
     public List<CustomerResponse>  findAll(){
       return customerService.findAll();
     }
 
-    // http://localhost:8080/client/juda@dev.com
+    // http://localhost:8080/customer/juda@dev.com
     @GetMapping("/{email}")
     public CustomerResponse findByEmail(@PathVariable String email){
 
         return customerService.findByEmail(email);
     }
 
-    // http://localhost:8080/client/juda@dev.com
+    // http://localhost:8080/customer/juda@dev.com
     @DeleteMapping("/{email}")
-    public void deleteByIdCard(@PathVariable String email){
+    public void deleteByEmail(@PathVariable String email){
         customerService.deleteByEmail(email);
     }
 
-    // http://localhost:8080/client/verify-code
+    // http://localhost:8080/customer/verify-code
     @PostMapping("/verify-code")
     public ConfirmationResponse verificationCode(@RequestBody @Valid ConfirmationRequest request){
         return verificationCodeService.codeValidation(request);
