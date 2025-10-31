@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-@Table(name = "clients")
-public class ClientEntity {
+@Table(name = "customers")
+public class CustomerEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,10 +28,10 @@ public class ClientEntity {
     private LocalDateTime updateAt;
     private LocalDateTime creationAt;
 
-    public ClientEntity() {
+    public CustomerEntity() {
     }
 
-    public ClientEntity(Long idCard, String fullname, String email, Long phone) {
+    public CustomerEntity(Long idCard, String fullname, String email, Long phone) {
         this.idCard = idCard;
         this.fullname = fullname;
         this.email = email;
@@ -39,12 +39,12 @@ public class ClientEntity {
     }
 
     @PreUpdate
-    private void update_up(){
+    private void preUpdate(){
         updateAt = LocalDateTime.now();
     }
 
     @PrePersist
-    private void created_up(){
+    private void prePersist(){
         creationAt = LocalDateTime.now();
     }
 
@@ -84,16 +84,8 @@ public class ClientEntity {
         return updateAt;
     }
 
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
-    }
-
     public LocalDateTime getCreationAt() {
         return creationAt;
-    }
-
-    public void setCreationAt(LocalDateTime creationAt) {
-        this.creationAt = creationAt;
     }
 
     public Long getIdCard() {
@@ -107,7 +99,7 @@ public class ClientEntity {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        ClientEntity that = (ClientEntity) o;
+        CustomerEntity that = (CustomerEntity) o;
         return Objects.equals(id, that.id) && Objects.equals(idCard, that.idCard) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);
     }
 

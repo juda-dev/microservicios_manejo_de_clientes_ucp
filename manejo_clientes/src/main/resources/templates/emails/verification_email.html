@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Código de Verificación - Agendia</title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #f5f5f5; font-family: Arial, sans-serif;">
+<!-- Contenedor principal -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #f5f5f5;">
+    <tr>
+        <td align="center" style="padding: 40px 0;">
+            <!-- Contenedor del email -->
+            <table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #ffffff; border: 1px solid #e0e0e0;">
+
+                <!-- Header mejorado con decoraciones -->
+                <tr>
+                    <td style="background-color: #000000; padding: 0;">
+                        <!-- Borde decorativo superior -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td style="background-color: #ffffff; height: 4px;"></td>
+                            </tr>
+                            <tr>
+                                <td style="background-color: #cccccc; height: 2px;"></td>
+                            </tr>
+                        </table>
+
+                        <!-- Contenido del header -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td align="center" style="padding: 30px 20px 10px 20px;">
+                                    <!-- Decoración superior -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" style="padding-bottom: 15px;">
+                                                <span style="color: #ffffff; font-size: 20px; letter-spacing: 8px;">◆ ◆ ◆</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Logo AGENDIA -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center">
+                                                <h1 style="margin: 0; padding: 0; color: #ffffff; font-size: 48px; font-weight: bold; letter-spacing: 12px; line-height: 1.2;">
+                                                    AGENDIA
+                                                </h1>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Línea decorativa -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="200" style="margin: 15px auto;">
+                                        <tr>
+                                            <td style="border-top: 2px solid #666666; height: 1px;"></td>
+                                            <td width="40" align="center" style="padding: 0 10px;">
+                                                <span style="color: #ffffff; font-size: 16px;">◆</span>
+                                            </td>
+                                            <td style="border-top: 2px solid #666666; height: 1px;"></td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Subtítulo -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" style="padding-top: 5px;">
+                                                <p style="margin: 0; padding: 0; color: #cccccc; font-size: 14px; letter-spacing: 4px; font-weight: normal;">
+                                                    PLATAFORMA DE AGENDAMIENTO
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <!-- Decoración inferior -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td align="center" style="padding-top: 15px;">
+                                                <span style="color: #666666; font-size: 12px; letter-spacing: 6px;">● ● ●</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- Borde decorativo inferior -->
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td style="padding: 0 40px;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="border-top: 1px solid #333333; height: 1px;"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="height: 20px;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Contenido principal -->
+                <tr>
+                    <td style="padding: 40px 40px 30px 40px;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <!-- Saludo personalizado -->
+                            <tr>
+                                <td style="padding-bottom: 20px;">
+                                    <h2 style="margin: 0; padding: 0; color: #000000; font-size: 24px; font-weight: bold;">
+                                        Hola, [[${fullname}]]
+                                    </h2>
+                                </td>
+                            </tr>
+
+                            <!-- Mensaje principal -->
+                            <tr>
+                                <td style="padding-bottom: 30px;">
+                                    <p style="margin: 0; padding: 0; color: #333333; font-size: 16px; line-height: 1.6;">
+                                        Has solicitado agendar una cita en <strong>Agendia</strong>. Para confirmar tu solicitud, utiliza el siguiente código de verificación:
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <!-- Código de verificación -->
+                            <tr>
+                                <td align="center" style="padding: 30px 0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; border: 2px solid #000000;">
+                                        <tr>
+                                            <td style="padding: 25px 50px;">
+                                                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                    <tr>
+                                                        <td align="center" style="padding-bottom: 10px;">
+                                                            <p style="margin: 0; padding: 0; color: #666666; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;">
+                                                                Código de Verificación
+                                                            </p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="center">
+                                                                <span style="font-family: 'Courier New', Courier, monospace; font-size: 42px; font-weight: bold; color: #000000; letter-spacing: 12px;">
+                                                                    [[${code}]]
+                                                                </span>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <!-- Información adicional -->
+                            <tr>
+                                <td style="padding-top: 20px; padding-bottom: 20px;">
+                                    <p style="margin: 0; padding: 0; color: #666666; font-size: 14px; line-height: 1.6; text-align: center;">
+                                        Este código es válido por <strong>20 minutos</strong>
+                                    </p>
+                                </td>
+                            </tr>
+
+                            <!-- Separador -->
+                            <tr>
+                                <td style="padding: 20px 0;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="border-top: 1px solid #e0e0e0;"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <!-- Advertencia de seguridad -->
+                            <tr>
+                                <td style="background-color: #f5f5f5; padding: 20px; border-left: 4px solid #000000;">
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                        <tr>
+                                            <td style="padding-bottom: 10px;">
+                                                <p style="margin: 0; padding: 0; color: #000000; font-size: 14px; font-weight: bold;">
+                                                    ⚠ Importante - Seguridad
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p style="margin: 0; padding: 0; color: #666666; font-size: 13px; line-height: 1.5;">
+                                                    • No compartas este código con nadie<br/>
+                                                    • Nuestro equipo nunca te pedirá este código<br/>
+                                                    • Si no solicitaste este código, ignora este mensaje
+                                                </p>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            <!-- Mensaje de ayuda -->
+                            <tr>
+                                <td style="padding-top: 30px;">
+                                    <p style="margin: 0; padding: 0; color: #666666; font-size: 14px; line-height: 1.6;">
+                                        ¿Necesitas ayuda? Contáctanos en
+                                        <a href="mailto:juanarboledavallecilla@gmail.com" style="color: #000000; text-decoration: underline;">juanarboledavallecilla@gmail.com</a>
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <!-- Footer -->
+                <tr>
+                    <td style="background-color: #f5f5f5; padding: 30px 40px; border-top: 1px solid #e0e0e0;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tr>
+                                <td align="center" style="padding-bottom: 15px;">
+                                    <p style="margin: 0; padding: 0; color: #000000; font-size: 16px; font-weight: bold; letter-spacing: 3px;">
+                                        AGENDIA
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center" style="padding-bottom: 10px;">
+                                    <p style="margin: 0; padding: 0; color: #666666; font-size: 12px; line-height: 1.5;">
+                                        Gestión profesional de citas empresariales
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center">
+                                    <p style="margin: 0; padding: 0; color: #999999; font-size: 11px; line-height: 1.5;">
+                                        © 2025 Agendia. Hecho por Juan David Arboleda Vallecilla.<br/>
+                                        Microservicios - Tecnología en Desarrollo de Software 2025/2.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
