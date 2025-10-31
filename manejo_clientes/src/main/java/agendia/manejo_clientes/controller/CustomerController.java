@@ -3,11 +3,9 @@ package agendia.manejo_clientes.controller;
 import agendia.manejo_clientes.model.dto.CustomerRequest;
 import agendia.manejo_clientes.model.dto.CustomerResponse;
 import agendia.manejo_clientes.model.dto.EmailResponse;
-import agendia.manejo_clientes.model.entity.CustomerEntity;
 import agendia.manejo_clientes.service.CustomerService;
 import agendia.manejo_clientes.service.SendEmailService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

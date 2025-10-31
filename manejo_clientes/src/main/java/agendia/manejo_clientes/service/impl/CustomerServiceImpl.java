@@ -31,10 +31,11 @@ public class CustomerServiceImpl implements CustomerService {
             CustomerEntity customerEntity = customerRepository
                     .findByEmail(customerRequest.email()).get();
 
-            CustomerEntity updateCustomerEntity = CustomerMapper.requestToEntity(customerRequest);
-                updateCustomerEntity.setId(customerEntity.getId());
+                customerEntity.setFullname(customerRequest.fullname());
+                customerEntity.setPhone(customerRequest.phone());
+                customerEntity.setIdCard(customerRequest.idCard());
 
-            customerRepository.save(updateCustomerEntity);
+            customerRepository.save(customerEntity);
 
             return CompletableFuture.completedFuture(null);
         }
